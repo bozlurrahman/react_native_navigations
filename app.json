@@ -1,0 +1,12 @@
+{
+  "name": "bozlur",
+  "displayName": "bozlur",
+  "expo": {
+    "name": "bozlur",
+    "slug": "bozlur",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
