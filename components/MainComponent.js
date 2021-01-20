@@ -1,8 +1,13 @@
+import 'react-native-gesture-handler';
 import React, { Component } from 'react';
 import Menu from './MenuComponent';
 import { DISHES } from '../shared/dishes';
 import Dishdetail from './DishdetailComponent';
-import { View } from 'react-native';
+import { View, Platform } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
 
 class Main extends Component {
     constructor(props) {
@@ -18,10 +23,15 @@ class Main extends Component {
     render() {
  
         return (
-            <View>
-                <Menu dishes={this.state.dishes} onPress={(dishId) => this.onDishSelect(dishId)} />
-                <Dishdetail dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]} />
-            </View>
+            <NavigationContainer>
+                <Stack.Navigator>
+                    <Stack.Screen name="Menu" component={Menu} options={{ dishes: this.state.dishes, title: 'Main Menu' }} />
+                    <Stack.Screen name="Dishdetail" component={Dishdetail} options={{ dishes: this.state.dishes, onPress: (dishId) => this.onDishSelect(dishId) }} />
+                </Stack.Navigator>
+
+                {/* <Menu dishes={this.state.dishes} onPress={(dishId) => this.onDishSelect(dishId)} /> */}
+                
+            </NavigationContainer>
         );
     }
 }
