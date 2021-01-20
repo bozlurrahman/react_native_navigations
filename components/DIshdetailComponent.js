@@ -6,11 +6,17 @@ import { DISHES } from '../shared/dishes';
 function RenderDish(props) {
 
     const dish = props.dish;
+    // const imag = DISHES.filter(function(dis){return dish.id == dis.id})[0].image;
+    // console.log('imag:', imag);
+    // const img_path = require( './'+ imag );
+    // console.log('img_path:', img_path);
     
         if (dish != null) {
             return(
                 <Card>
-                    <Card.FeaturedTitle>{dish.name}</Card.FeaturedTitle>
+                    <Card.Title>{dish.name}</Card.Title>
+                    {/* <Card.Image source={require( './'+ DISHES.filter(function(dis){return dish.id == dis.id})[0].image )} /> */}
+                    {/* <Card.Image source={ img_path } /> */}
                     <Card.Image source={require('./images/uthappizza.png')} />
                     <Text style={{margin: 10}}>
                         {dish.description}
