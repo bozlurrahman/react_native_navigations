@@ -90,7 +90,7 @@ function Main() {
     return (
         <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen name="Home" options={{ title: 'App Title' }} >
+            <Stack.Screen name="Home"  initialParams={{ name: "Home Screen" }} options={({ route }) => ({ title: route.params.name })} >
                 {props => <HomeScreen {...props} extraData={{extra: 'someData'}} />}
             </Stack.Screen>
             <Stack.Screen name="Details" component={DetailsScreen} initialParams={{ itemId: 42 }} />
