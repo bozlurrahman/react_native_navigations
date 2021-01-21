@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, View, Text, TextInput } from 'react-native';
+import { Button, Image, View, Text, TextInput } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -84,6 +84,15 @@ function DetailsScreen({ route, navigation }) {
     );
 }
 
+function LogoTitle() {
+    return (
+        <Image
+            style={{ width: 50, height: 50 }}
+            source={require('./images/logo.png')}
+        />
+    );
+}
+
 const Stack = createStackNavigator();
 
 function Main() {
@@ -100,18 +109,18 @@ function Main() {
                 },
             }}
         >
-            <Stack.Screen name="Home"  initialParams={{ name: "Home Screen" }}
-                options={
-                    ({ route }) => ({ 
-                        title: route.params.name, 
-                        headerStyle: {
-                            backgroundColor: '#f4511e',
-                        },
-                        headerTintColor: '#fff',
-                        headerTitleStyle: {
-                            fontWeight: 'bold',
-                        },
-                    })
+            <Stack.Screen name="Home" 
+                options={{
+                    title: "Home Screen", 
+                    headerTitle: props => <LogoTitle {...props} />,
+                    headerStyle: {
+                        backgroundColor: '#f4511e',
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                }}
+                    
                 } 
             >
                 {props => <HomeScreen {...props} extraData={{extra: 'someData'}} />}
