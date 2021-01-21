@@ -58,7 +58,7 @@ function Main() {
             <Stack.Screen name="Home" options={{ title: 'App Title' }} >
                 {props => <HomeScreen {...props} extraData={{extra: 'someData'}} />}
             </Stack.Screen>
-            <Stack.Screen name="Details" component={DetailsScreen} />
+            <Stack.Screen name="Details" component={DetailsScreen} initialParams={{ itemId: 42 }} />
         </Stack.Navigator>
         </NavigationContainer>
     );
