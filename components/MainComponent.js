@@ -3,7 +3,8 @@ import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-function HomeScreen() {
+function HomeScreen(props) {
+    console.log('extraData: ', props.extraData);
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Home Screen</Text>
@@ -25,7 +26,9 @@ function Main() {
     return (
         <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'App Title' }} />
+            <Stack.Screen name="Home" options={{ title: 'App Title' }} >
+                {props => <HomeScreen {...props} extraData={{extra: 'someData'}} />}
+            </Stack.Screen>
             <Stack.Screen name="Details" component={DetailsScreen} />
         </Stack.Navigator>
         </NavigationContainer>
