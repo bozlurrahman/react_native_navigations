@@ -3,6 +3,7 @@ import { Button, Image, View, Text, TextInput } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import NestingNavigators from './NestingNavigators';
+import NavigationLifecycle from './NavigationLifecycle';
 
 function HomeScreen({navigation, route, extraData}) {
     React.useEffect(() => {
@@ -49,6 +50,10 @@ function HomeScreen({navigation, route, extraData}) {
             <Button  style={{ margin: 40 }}
                 title="Go Messages Nesting Navigator"
                 onPress={() => navigation.navigate('NestingNavigators', { screen: 'Messages' })}
+            />
+            <Button  style={{ margin: 40 }}
+                title="Go NavigationLifecycle"
+                onPress={() => navigation.navigate('NavigationLifecycle')}
             />
         </View>
     );
@@ -149,6 +154,7 @@ function Main() {
             <Stack.Screen name="Details" component={DetailsScreen} initialParams={{ itemId: 42 }} />
             <Stack.Screen name="CreatePost" component={CreatePostScreen} />
             <Stack.Screen name="NestingNavigators" component={NestingNavigators} />
+            <Stack.Screen name="NavigationLifecycle" component={NavigationLifecycle} />
         </Stack.Navigator>
         </NavigationContainer>
     );
