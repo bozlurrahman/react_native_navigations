@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import NestingNavigators from './NestingNavigators';
 import NavigationLifecycle from './NavigationLifecycle';
+import ModalStack from './ModalStack';
 
 function HomeScreen({navigation, route, extraData}) {
     React.useEffect(() => {
@@ -54,6 +55,10 @@ function HomeScreen({navigation, route, extraData}) {
             <Button  style={{ margin: 40 }}
                 title="Go NavigationLifecycle"
                 onPress={() => navigation.navigate('NavigationLifecycle')}
+            />
+            <Button  style={{ margin: 40 }}
+                title="Go ModalStack"
+                onPress={() => navigation.navigate('ModalStack')}
             />
         </View>
     );
@@ -155,6 +160,7 @@ function Main() {
             <Stack.Screen name="CreatePost" component={CreatePostScreen} />
             <Stack.Screen name="NestingNavigators" component={NestingNavigators} />
             <Stack.Screen name="NavigationLifecycle" component={NavigationLifecycle} />
+            <Stack.Screen name="ModalStack" component={ModalStack} />
         </Stack.Navigator>
         </NavigationContainer>
     );
