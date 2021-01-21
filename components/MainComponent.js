@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Button, Image, View, Text, TextInput } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import NestingNavigators from './NestingNavigators';
 
 function HomeScreen({navigation, route, extraData}) {
     React.useEffect(() => {
@@ -41,6 +42,10 @@ function HomeScreen({navigation, route, extraData}) {
             />
             <Text style={{ margin: 10 }}>Post: {route.params?.post}</Text>
             <Text>Count: {count}</Text>
+            <Button  style={{ margin: 40 }}
+                title="Go NestingNavigators"
+                onPress={() => navigation.navigate('NestingNavigators')}
+            />
         </View>
     );
 }
@@ -139,6 +144,7 @@ function Main() {
             </Stack.Screen>
             <Stack.Screen name="Details" component={DetailsScreen} initialParams={{ itemId: 42 }} />
             <Stack.Screen name="CreatePost" component={CreatePostScreen} />
+            <Stack.Screen name="NestingNavigators" component={NestingNavigators} />
         </Stack.Navigator>
         </NavigationContainer>
     );
