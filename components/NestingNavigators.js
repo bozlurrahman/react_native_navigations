@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Button, Image, View, Text, TextInput } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
 
@@ -34,8 +35,29 @@ function Messages({ route, navigation }) {
 
 function NestingNavigators() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Feed" component={Feed} />
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+
+          if (route.name === 'Feed') {
+            iconName = focused
+              ? 'ios-information-circle'
+              : 'ios-information-circle-outline';
+          } else if (route.name === 'Messages') {
+            iconName = focused ? 'ios-list-circle' : 'ios-list';
+          }
+
+          // You can return any component that you like here!
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+      })}
+      tabBarOptions={{
+        activeTintColor: 'tomato',
+        inactiveTintColor: 'gray',
+      }}
+    >
+      <Tab.Screen name="Feed" component={Feed} options={{ tabBarBadge: 3 }} />
       <Tab.Screen name="Messages" component={Messages} />
     </Tab.Navigator>
   );
