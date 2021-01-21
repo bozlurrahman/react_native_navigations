@@ -90,7 +90,20 @@ function Main() {
     return (
         <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen name="Home"  initialParams={{ name: "Home Screen" }} options={({ route }) => ({ title: route.params.name })} >
+            <Stack.Screen name="Home"  initialParams={{ name: "Home Screen" }}
+                options={
+                    ({ route }) => ({ 
+                        title: route.params.name, 
+                        headerStyle: {
+                            backgroundColor: '#f4511e',
+                        },
+                        headerTintColor: '#fff',
+                        headerTitleStyle: {
+                            fontWeight: 'bold',
+                        },
+                    })
+                } 
+            >
                 {props => <HomeScreen {...props} extraData={{extra: 'someData'}} />}
             </Stack.Screen>
             <Stack.Screen name="Details" component={DetailsScreen} initialParams={{ itemId: 42 }} />
