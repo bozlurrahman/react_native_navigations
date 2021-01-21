@@ -113,6 +113,13 @@ function Main() {
                 options={{
                     title: "Home Screen", 
                     headerTitle: props => <LogoTitle {...props} />,
+                    headerRight: () => (
+                        <Button
+                            onPress={() => alert('This is a button!')}
+                            title="Info"
+                            style={{color: "#fff", backgroundColor: "blue", marginRight: "20"}}
+                        />
+                    ),
                     headerStyle: {
                         backgroundColor: '#f4511e',
                     },
