@@ -46,6 +46,10 @@ function HomeScreen({navigation, route, extraData}) {
                 title="Go NestingNavigators"
                 onPress={() => navigation.navigate('NestingNavigators')}
             />
+            <Button  style={{ margin: 40 }}
+                title="Go Messages Nesting Navigator"
+                onPress={() => navigation.navigate('NestingNavigators', { screen: 'Messages' })}
+            />
         </View>
     );
 }
