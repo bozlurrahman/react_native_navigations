@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Button, Image, View, Text, TextInput } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import NestingNavigators from './NestingNavigators';
 import NavigationLifecycle from './NavigationLifecycle';
 import ModalStack from './ModalStack';
@@ -27,6 +28,10 @@ function HomeScreen({navigation, route, extraData}) {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Text>Home Screen</Text>
+            <Button  style={{ margin: 40 }}
+                title="Go Deawer Home"
+                onPress={() => navigation.navigate('MyDrawer')}
+            />
             <Button
                 title="Go to Details"
                 onPress={() => {
@@ -44,6 +49,44 @@ function HomeScreen({navigation, route, extraData}) {
             />
             <Text style={{ margin: 10 }}>Post: {route.params?.post}</Text>
             <Text>Count: {count}</Text>
+            <Button  style={{ margin: 40 }}
+                title="Go NestingNavigators"
+                onPress={() => navigation.navigate('NestingNavigators')}
+            />
+            <Button  style={{ margin: 40 }}
+                title="Go Messages Nesting Navigator"
+                onPress={() => navigation.navigate('NestingNavigators', { screen: 'Messages' })}
+            />
+            <Button  style={{ margin: 40 }}
+                title="Go NavigationLifecycle"
+                onPress={() => navigation.navigate('NavigationLifecycle')}
+            />
+            <Button  style={{ margin: 40 }}
+                title="Go ModalStack"
+                onPress={() => navigation.navigate('ModalStack')}
+            />
+        </View>
+    );
+}
+function DrawerHomeScreen({navigation, route}) {
+    return (
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Text>Drawer Home Screen</Text>
+            <Button
+                title="Go to Details"
+                onPress={() => {
+                    /* 1. Navigate to the Details route with params */
+                    navigation.navigate('Details', {
+                        itemId: 86,
+                    });
+                }}
+            />
+
+            <Button  style={{ margin: 40 }}
+                title="Create post"
+                onPress={() => navigation.navigate('CreatePost')}
+            />
+            <Text style={{ margin: 10 }}>Post: {route.params?.post}</Text>
             <Button  style={{ margin: 40 }}
                 title="Go NestingNavigators"
                 onPress={() => navigation.navigate('NestingNavigators')}
@@ -126,6 +169,22 @@ function LogoTitle() {
 
 const Stack = createStackNavigator();
 
+const Drawer = createDrawerNavigator();
+
+function MyDrawer() {
+    return (
+        <Drawer.Navigator>
+            <Drawer.Screen name="Home" component={DrawerHomeScreen} />
+            <Drawer.Screen name="Details" component={DetailsScreen} />
+            <Drawer.Screen name="CreatePost" component={CreatePostScreen} />
+            <Drawer.Screen name="NestingNavigators" component={NestingNavigators} />
+            <Drawer.Screen name="NavigationLifecycle" component={NavigationLifecycle} />
+            <Drawer.Screen name="ModalStack" component={ModalStack} />
+        </Drawer.Navigator>
+    );
+}
+
+
 function Main() {
     return (
         <NavigationContainer>
@@ -161,6 +220,7 @@ function Main() {
             <Stack.Screen name="NestingNavigators" component={NestingNavigators} />
             <Stack.Screen name="NavigationLifecycle" component={NavigationLifecycle} />
             <Stack.Screen name="ModalStack" component={ModalStack} />
+            <Stack.Screen name="MyDrawer" component={MyDrawer} />
         </Stack.Navigator>
         </NavigationContainer>
     );
