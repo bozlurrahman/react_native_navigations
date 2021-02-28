@@ -1,19 +1,22 @@
 import * as React from 'react';
-import { Button, Text, Image } from 'react-native';
+import { Button, Image, Text, View, Platform, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-function LogoTitle() {
+function LogoTitle(props) {
+  console.log('props::', props);
   return (
-    <Image
-      style={{ width: 50, height: 50 }}
-      source={require('./images/logo.png')}
-    />
+      <TouchableOpacity  activeOpacity = { .5 } onPress={ props.toggleTheDwawer }>
+          <Image style={{ width: 50, height: 50 }}
+              source={require('./images/logo.png')}
+          />
+      </TouchableOpacity>
   );
 }
 
 function HomeScreen({ navigation }) {
   const [count, setCount] = React.useState(0);
+  const toggleTheDwawer = () => navigation.toggleDrawer()
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -36,7 +39,11 @@ function Test() {
           name="Home"
           component={HomeScreen}
           options={({ navigation, route }) => ({
-            headerTitle: props => <LogoTitle {...props} />,
+            headerLeft: (props) => {
+              const toggleTheDwawer = () => navigation.toggleDrawer()
+              return <LogoTitle {...props} toggleTheDwawer={toggleTheDwawer} />
+            },
+            headerTitle: "Home Test Page",
           })}
         />
       </Stack.Navigator>
